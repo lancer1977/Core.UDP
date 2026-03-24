@@ -1,29 +1,45 @@
 # Core.UDP
-A project focused on Core.UDP.
 
-## Overview
-This repository contains the Core.UDP project. It is designed to provide robust functionality and seamless integration within its ecosystem.
+UDP networking utilities for .NET applications.
 
 ## 🚀 Key Features
-- Core Application Logic
-- 
-- Sub Module Tests
-- Standardized Project Layout
-- Core Capabilities
-- Sub Module Consoleapp1
-- Sub Module Models
-- [Feature 3 (Beyond the App capability)]
+
+- `IUdpListener` interface for UDP abstraction
+- `ObservableJsonUdpListener` - Reactive UDP listener with JSON deserialization
+- `SocketTransmitter` for UDP data transmission
+- Extension methods for common UDP operations
 
 ## 🛠 Technology Stack
-- C# / .NET
 
-## 📖 Documentation
-Detailed documentation can be found in the following sections:
-- [Feature Index](./docs/features/README.md)
-- [Core Capabilities](./docs/features/core-capabilities.md)
+- C# / .NET 10.0
+- System.Reactive (Rx extensions)
+- PolyhydraGames.Core.Models, Core.Interfaces, Extensions
+
+## 📦 NuGet Package
+
+**Package:** `PolyhydraSoftware.Core.UDP`
+
+Published automatically via Azure DevOps CI on main branch commits.
+
+- **Feed:** NuGet.org (public)
+- **CI Pipeline:** `.pipelines/UDP.yml`
+- **Versioning:** Build-number based (`1.0.0.{rev}`)
+
+### Local Pack
+
+```bash
+cd Models
+dotnet pack -c Release --output ./artifacts
+```
 
 ## 🚦 Getting Started
+
 ```bash
 dotnet build
-dotnet run
+dotnet test
 ```
+
+## 📖 Documentation
+
+- [Feature Index](./docs/features/README.md)
+- [Core Capabilities](./docs/features/core-capabilities.md)
