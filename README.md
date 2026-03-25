@@ -39,6 +39,16 @@ dotnet build
 dotnet test
 ```
 
+## 🧪 Test Coverage
+
+The test suite includes behavioral tests for:
+
+- **SocketTransmitter**: Payload serialization shape verification
+- **ObservableJsonUdpListener**: JSON deserialization, subscription lifecycle
+- **Listener Lifecycle**: Start/Stop behavior (note: Stop() throws if called before Start())
+
+Tests run via `dotnet test` in the Tests project.
+
 ## 📖 Documentation
 
 - [Feature Index](./docs/features/README.md)
