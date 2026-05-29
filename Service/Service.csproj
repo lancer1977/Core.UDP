@@ -8,6 +8,6 @@
   </PropertyGroup>
 	<ItemGroup>
 
-		<PackageReference Include="PolyhydraGames.Core.Models" Version="1.0.2.10" />
+		<PackageReference Include="PolyhydraGames.Core.Models" Version="1.0.2.11" />
 	</ItemGroup>
 </Project>
