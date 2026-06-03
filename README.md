@@ -2,6 +2,15 @@
 
 UDP networking utilities for .NET applications.
 
+## Tags
+
+- dotnet
+- core
+- core-udp
+- docs
+- obs
+- devops
+
 ## 🚀 Key Features
 
 - `IUdpListener` interface for UDP abstraction
