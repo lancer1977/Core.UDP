@@ -2,31 +2,62 @@ name: ci
 
 on:
   push:
-    branches: ["main"]
+    branches:
+      - main
+    paths:
+      - "Models/**"
+      - "Tests/**"
+      - "README.md"
+      - ".github/workflows/ci.yml"
   pull_request:
-    branches: ["main"]
+    paths:
+      - "Models/**"
+      - "Tests/**"
+      - "README.md"
+      - ".github/workflows/ci.yml"
   workflow_dispatch:
 
 permissions:
   contents: read
 
+env:
+  DOTNET_VERSION: "10.0.x"
+
 jobs:
-  build-test:
+  build-test-pack:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 10.0.x
+          dotnet-version: ${{ env.DOTNET_VERSION }}
 
       - name: Restore
         run: dotnet restore Core.UDP.sln
 
       - name: Build
-        run: dotnet build Core.UDP.sln --configuration Release --no-restore
+        run: dotnet build Core.UDP.sln -c Release --no-restore
 
       - name: Test
-        run: dotnet test Core.UDP.sln --configuration Release --no-restore --no-build --verbosity normal
+        run: dotnet test Core.UDP.sln -c Release --no-build
+
+      - name: Compute package version
+        shell: bash
+        run: echo "PACKAGE_VERSION=1.0.0.${GITHUB_RUN_NUMBER}" >> "$GITHUB_ENV"
+
+      - name: Pack
+        run: dotnet pack Models/PolyhydraSoftware.Core.UDP.csproj -c Release --no-build -p:PackageVersion=${PACKAGE_VERSION} -o artifacts/packages
+
+      - name: Upload package artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: nuget-packages
+          path: artifacts/packages/*.nupkg
+
+      - name: Publish to NuGet.org
+        if: github.event_name != 'pull_request' && secrets.NUGET_API_KEY != ''
+        run: dotnet nuget push "artifacts/packages/*.nupkg" --source https://api.nuget.org/v3/index.json --api-key "${{ secrets.NUGET_API_KEY }}" --skip-duplicate

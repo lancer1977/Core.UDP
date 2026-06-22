@@ -28,10 +28,10 @@ UDP networking utilities for .NET applications.
 
 **Package:** `PolyhydraSoftware.Core.UDP`
 
-Published automatically via Azure DevOps CI on main branch commits.
+Published automatically via GitHub Actions on main branch commits.
 
 - **Feed:** NuGet.org (public)
-- **CI Pipeline:** `.pipelines/UDP.yml`
+- **CI Pipeline:** `.github/workflows/ci.yml`
 - **Versioning:** Build-number based (`1.0.0.{rev}`)
 
 ### Local Pack
