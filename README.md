@@ -60,5 +60,6 @@ Tests run via `dotnet test` in the Tests project.
 
 ## 📖 Documentation
 
+- [Validation](./docs/validation.md)
 - [Feature Index](./docs/features/README.md)
 - [Core Capabilities](./docs/features/core-capabilities.md)
