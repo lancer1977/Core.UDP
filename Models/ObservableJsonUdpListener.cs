@@ -11,8 +11,8 @@ namespace PolyhydraSoftware.Core.UDP;
 public class ObservableJsonUdpListener<T> : IUdpListener<T>
 {
     private readonly ILogger<ObservableJsonUdpListener<T>>? _log;
-    public Observable<bool> Running { get; } = new();
-    private readonly Observable<T> _announcer = new();
+    public SubjectObservable<bool> Running { get; } = new();
+    private readonly SubjectObservable<T> _announcer = new();
     private CancellationTokenSource MonitoringCTS { get; set; }
     UdpClient listener;
     IPEndPoint groupEP;

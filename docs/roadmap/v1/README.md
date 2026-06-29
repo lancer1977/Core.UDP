@@ -1,6 +1,9 @@
 # Core.UDP Roadmap (v1)
 
+This local planning file has been migrated. GitHub Issues are the canonical tracker.
+
 Canonical GitHub issue: https://github.com/lancer1977/Core.UDP/issues/5
+Original source kind: roadmap
 
 ## Vision
 
